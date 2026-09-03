@@ -42,10 +42,19 @@ app.use("/api/webhooks", webhooksInboundRoutes);
 // Serve the built frontend in production (single-service Railway deploy)
 if (process.env.NODE_ENV === "production") {
   const path = require("path");
+  const fs = require("fs");
 
   const frontendDist = path.join(process.cwd(), "../frontend/dist");
 
-  console.log("Frontend directory:", frontendDist);
+  console.log("=== FRONTEND DEBUG ===");
+  console.log("NODE_ENV:", process.env.NODE_ENV);
+  console.log("cwd:", process.cwd());
+  console.log("frontendDist:", frontendDist);
+  console.log(
+    "index.html exists:",
+    fs.existsSync(path.join(frontendDist, "index.html"))
+  );
+  console.log("======================");
 
   app.use(express.static(frontendDist));
 
