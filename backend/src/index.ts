@@ -38,6 +38,10 @@ app.use("/api/users", userRoutes);
 app.use("/api/admin/webhooks", webhookAdminRoutes);
 app.use("/api/webhooks", webhooksInboundRoutes);
 
+
+app.get("/", (_req, res) => {
+  res.send("Team Tasks backend is running");
+});
 // Serve the built frontend in production (single-service Railway deploy)
 // Serve the built frontend in production (single-service Railway deploy)
 if (process.env.NODE_ENV === "production") {
