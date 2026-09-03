@@ -45,7 +45,7 @@ if (process.env.NODE_ENV === "production") {
 
   const frontendDist = path.join(process.cwd(), "../frontend/dist");
 
-  console.log("Frontend path:", frontendDist);
+  console.log("Frontend directory:", frontendDist);
 
   app.use(express.static(frontendDist));
 
