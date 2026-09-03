@@ -38,27 +38,14 @@ app.use("/api/users", userRoutes);
 app.use("/api/admin/webhooks", webhookAdminRoutes);
 app.use("/api/webhooks", webhooksInboundRoutes);
 
-
-app.get("/", (_req, res) => {
-  res.send("Team Tasks backend is running");
-});
 // Serve the built frontend in production (single-service Railway deploy)
 // Serve the built frontend in production (single-service Railway deploy)
 if (process.env.NODE_ENV === "production") {
   const path = require("path");
-  const fs = require("fs");
 
   const frontendDist = path.join(process.cwd(), "../frontend/dist");
 
-  console.log("=== FRONTEND DEBUG ===");
-  console.log("NODE_ENV:", process.env.NODE_ENV);
-  console.log("cwd:", process.cwd());
-  console.log("frontendDist:", frontendDist);
-  console.log(
-    "index.html exists:",
-    fs.existsSync(path.join(frontendDist, "index.html"))
-  );
-  console.log("======================");
+  console.log("Frontend directory:", frontendDist);
 
   app.use(express.static(frontendDist));
 
