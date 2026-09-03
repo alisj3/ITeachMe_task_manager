@@ -39,10 +39,13 @@ app.use("/api/admin/webhooks", webhookAdminRoutes);
 app.use("/api/webhooks", webhooksInboundRoutes);
 
 // Serve the built frontend in production (single-service Railway deploy)
+// Serve the built frontend in production (single-service Railway deploy)
 if (process.env.NODE_ENV === "production") {
   const path = require("path");
-  const frontendDist = path.join(__dirname, "../../frontend/dist");
+  const frontendDist = path.join(process.cwd(), "../frontend/dist");
+
   app.use(express.static(frontendDist));
+
   app.get("*", (_req, res) => {
     res.sendFile(path.join(frontendDist, "index.html"));
   });
